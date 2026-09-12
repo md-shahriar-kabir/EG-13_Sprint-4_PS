@@ -325,3 +325,55 @@ var checkInclusion = function(s1, s2) {
 
     return false;
 };
+
+// ------------------------------------------------------
+// ------------------------------------------------------
+
+// 10. Find All Anagrams in a String 
+// Write a function that finds all starting indices of substrings in s that are anagrams of string p. Return the indices in any order.
+
+// /**
+//  * @param {string} s
+//  * @param {string} p
+//  * @return {number[]}
+//  */
+var findAnagrams = function(s, p) {
+    const result = [];
+
+    if (p.length > s.length) return result;
+
+    const countP = {};
+    const countWindow = {};
+
+    // Count characters in p
+    for (let char of p) {
+        countP[char] = (countP[char] || 0) + 1;
+    }
+
+    let left = 0;
+
+    for (let right = 0; right < s.length; right++) {
+        const char = s[right];
+        countWindow[char] = (countWindow[char] || 0) + 1;
+
+        // Keep window size equal to p.length
+        if (right - left + 1 > p.length) {
+            const leftChar = s[left];
+
+            countWindow[leftChar]--;
+
+            if (countWindow[leftChar] === 0) {
+                delete countWindow[leftChar];
+            }
+
+            left++;
+        }
+
+        // Check if window is an anagram of p
+        if (JSON.stringify(countP) === JSON.stringify(countWindow)) {
+            result.push(left);
+        }
+    }
+
+    return result;
+};
