@@ -180,3 +180,39 @@ var productExceptSelf = function(nums) {
 
     return result;
 };
+
+
+// ------------------------------------------------------
+// ------------------------------------------------------
+
+// 07. Remove Nth Node From End of List
+// Write a function that removes the nth node from the end of a singly linked list and returns the head of the modified list.
+
+// /**
+//  * @param {ListNode} head
+//  * @param {number} n
+//  * @return {ListNode}
+//  */
+var removeNthFromEnd = function(head, n) {
+    const dummy = new ListNode(0);
+    dummy.next = head;
+
+    let fast = dummy;
+    let slow = dummy;
+
+    // Move fast pointer n steps ahead
+    for (let i = 0; i < n; i++) {
+        fast = fast.next;
+    }
+
+    // Move both until fast reaches the last node
+    while (fast.next !== null) {
+        fast = fast.next;
+        slow = slow.next;
+    }
+
+    // Remove the target node
+    slow.next = slow.next.next;
+
+    return dummy.next;
+};
