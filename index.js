@@ -125,3 +125,25 @@ var reverseList = function(head) {
 
     return prev;
 };
+
+// ------------------------------------------------------
+// ------------------------------------------------------
+
+// 05. Middle of the Linked List
+// Write a function that finds and returns the middle node of a singly linked list. If the list contains two middle nodes, return the second middle node.
+
+// /**
+//  * @param {ListNode} head
+//  * @return {ListNode}
+//  */
+var middleNode = function(head) {
+    let slow = head;
+    let fast = head;
+
+    while (fast !== null && fast.next !== null) {
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+
+    return slow;
+};
