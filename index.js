@@ -269,3 +269,59 @@ var searchRange = function(nums, target) {
 
     return [first, last];
 };
+
+// ------------------------------------------------------
+// ------------------------------------------------------
+
+// 09. Permutation in String 
+// Write a validation function that determines whether one string contains a permutation of another string as a substring.
+// /**
+//  * @param {string} s1
+//  * @param {string} s2
+//  * @return {boolean}
+//  */
+
+/**
+ * @param {string} s1
+ * @param {string} s2
+ * @return {boolean}
+ */
+var checkInclusion = function(s1, s2) {
+    if (s1.length > s2.length) {
+        return false;
+    }
+
+    const count1 = new Array(26).fill(0);
+    const count2 = new Array(26).fill(0);
+
+    // Count characters of s1
+    for (let i = 0; i < s1.length; i++) {
+        count1[s1.charCodeAt(i) - 97]++;
+    }
+
+    // First window
+    for (let i = 0; i < s1.length; i++) {
+        count2[s2.charCodeAt(i) - 97]++;
+    }
+
+    // Check first window
+    if (count1.join() === count2.join()) {
+        return true;
+    }
+
+    // Slide the window
+    for (let i = s1.length; i < s2.length; i++) {
+        // Add new character
+        count2[s2.charCodeAt(i) - 97]++;
+
+        // Remove leftmost character
+        count2[s2.charCodeAt(i - s1.length) - 97]--;
+
+        // Check current window
+        if (count1.join() === count2.join()) {
+            return true;
+        }
+    }
+
+    return false;
+};
