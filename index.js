@@ -73,3 +73,29 @@ var wordPattern = function(pattern, s) {
 
     return true;
 };
+
+// ------------------------------------------------------
+// ------------------------------------------------------
+
+// 03. Find the Difference
+// Write a function that finds the extra character added to string t when string s is rearranged and one additional character is added.
+// /**
+// /**
+//  * @param {string} pattern
+//  * @param {string} s
+//  * @return {boolean}
+//  */
+
+var findTheDifference = function(s, t) {
+    let result = 0;
+
+    for (let char of s) {
+        result ^= char.charCodeAt(0);
+    }
+
+    for (let char of t) {
+        result ^= char.charCodeAt(0);
+    }
+
+    return String.fromCharCode(result);
+};
