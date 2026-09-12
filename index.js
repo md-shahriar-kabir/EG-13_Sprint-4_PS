@@ -99,3 +99,29 @@ var findTheDifference = function(s, t) {
 
     return String.fromCharCode(result);
 };
+
+// ------------------------------------------------------
+// ------------------------------------------------------
+
+// 04. Reverse Linked List
+// Write a transformation function that reverses a singly linked list and returns the new head of the reversed list.
+// /**
+//  * @param {ListNode} head
+//  * @return {ListNode}
+//  */
+
+var reverseList = function(head) {
+    let prev = null;
+    let current = head;
+
+    while (current !== null) {
+        let next = current.next;
+
+        current.next = prev;
+
+        prev = current;
+        current = next;
+    }
+
+    return prev;
+};
