@@ -147,3 +147,36 @@ var middleNode = function(head) {
 
     return slow;
 };
+
+// ------------------------------------------------------
+// ------------------------------------------------------
+
+
+// 06. Product of Array Except Self
+// Write a function that returns an array where each element is the product of all elements in the input array except the element at the current index. Do not use division.
+
+// /**
+//  * @param {number[]} nums
+//  * @return {number[]}
+//  */
+var productExceptSelf = function(nums) {
+    const result = new Array(nums.length).fill(1);
+
+    let prefix = 1;
+
+    // Left side product
+    for (let i = 0; i < nums.length; i++) {
+        result[i] = prefix;
+        prefix *= nums[i];
+    }
+
+    let suffix = 1;
+
+    // Right side product
+    for (let i = nums.length - 1; i >= 0; i--) {
+        result[i] *= suffix;
+        suffix *= nums[i];
+    }
+
+    return result;
+};
